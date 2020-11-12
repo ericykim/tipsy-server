@@ -16,6 +16,12 @@
 
 	<properties>
 		<java.version>8</java.version>
+
+		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+		<beanstalk.versionLabel>${maven.build.timestamp}</beanstalk.versionLabel>
+		<beanstalk.applicationName>my application</beanstalk.applicationName>
+		<beanstalker.region>us-west-2</beanstalker.region>
+		<beanstalk.cnamePrefix>my application</beanstalk.cnamePrefix>
 	</properties>
 
 	<dependencies>
@@ -56,6 +62,18 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>br.com.ingenieux</groupId>
+				<artifactId>beanstalk-maven-plugin</artifactId>
+				<version>1.5.0</version>
+				<configuration>
+					<s3Bucket>my-application-bucket-live</s3Bucket>
+					<s3Key>${project.artifactId}/${project.build.finalName}-${maven.build.timestamp}.jar</s3Key>
+					<applicationName>my application</applicationName>
+					<environmentName>my-application-live</environmentName>
+					<environmentRef>my-application-live</environmentRef>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
