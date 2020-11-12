@@ -19,9 +19,9 @@
 
 		<maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
 		<beanstalk.versionLabel>${maven.build.timestamp}</beanstalk.versionLabel>
-		<beanstalk.applicationName>my application</beanstalk.applicationName>
+		<beanstalk.applicationName>tipsy</beanstalk.applicationName>
 		<beanstalker.region>us-west-2</beanstalker.region>
-		<beanstalk.cnamePrefix>my application</beanstalk.cnamePrefix>
+		<beanstalk.cnamePrefix>tipsy</beanstalk.cnamePrefix>
 	</properties>
 
 	<dependencies>
@@ -67,11 +67,11 @@
 				<artifactId>beanstalk-maven-plugin</artifactId>
 				<version>1.5.0</version>
 				<configuration>
-					<s3Bucket>my-application-bucket-live</s3Bucket>
+					<s3Bucket>elasticbeanstalk-us-west-2-763321355032</s3Bucket>
 					<s3Key>${project.artifactId}/${project.build.finalName}-${maven.build.timestamp}.jar</s3Key>
-					<applicationName>my application</applicationName>
-					<environmentName>my-application-live</environmentName>
-					<environmentRef>my-application-live</environmentRef>
+					<applicationName>tipsy</applicationName>
+					<environmentName>tipsy-live</environmentName>
+					<environmentRef>tipsy-live</environmentRef>
 				</configuration>
 			</plugin>
 			<plugin>
