@@ -11,7 +11,8 @@ public class Drink {
     @Column(name = "id")
     private Integer drinkId;
     private String drinkName;
-    @OneToMany( targetEntity = Step.class)
+    @OneToMany(targetEntity = Step.class, cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Step> steps;
     @OneToMany(targetEntity = Ingredient.class, cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, orphanRemoval = true)
