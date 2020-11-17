@@ -1,8 +1,10 @@
 package com.example.tipsyserver.services;
 
 import com.example.tipsyserver.models.Drink;
+import com.example.tipsyserver.models.SimpleDrink;
 import com.example.tipsyserver.repositories.DrinkRepository;
 
+import com.example.tipsyserver.repositories.SimpleDrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ public class DrinkService {
 
     @Autowired
     DrinkRepository drinkRepository;
+    @Autowired
+    SimpleDrinkRepository simpleDrinkRepository;
 
-    public List<Drink> searchForDrink(String drinkName, int offset, int limit) {
-        return drinkRepository.searchDrinkName(drinkName, offset, limit);
+    public List<SimpleDrink> searchForDrink(String drinkName, int offset, int limit) {
+        return simpleDrinkRepository.searchDrinkName(drinkName, offset, limit);
     }
 
     public Drink createDrink(Drink drink){

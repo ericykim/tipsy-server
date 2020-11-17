@@ -1,5 +1,6 @@
 package com.example.tipsyserver.controllers;
 
+import com.example.tipsyserver.models.SimpleDrink;
 import com.example.tipsyserver.services.DrinkService;
 
 import java.util.List;
@@ -20,9 +21,9 @@ public class DrinkController {
     }
 
     @GetMapping("/api/v1/drinks/search")
-    public List<Drink> searchForDrink(@RequestParam String drinkName,
-            @RequestParam(defaultValue = "0", required = false) Integer offset,
-            @RequestParam(defaultValue = "10", required = false) Integer limit) {
+    public List<SimpleDrink> searchForDrink(@RequestParam String drinkName,
+                                            @RequestParam(defaultValue = "0", required = false) Integer offset,
+                                            @RequestParam(defaultValue = "10", required = false) Integer limit) {
         return drinkService.searchForDrink(drinkName, offset, limit);
     }
 
