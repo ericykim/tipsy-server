@@ -67,7 +67,7 @@
 				<artifactId>beanstalk-maven-plugin</artifactId>
 				<version>1.5.0</version>
 				<configuration>
-					<s3Bucket>elasticbeanstalk-us-west-2-763321355032</s3Bucket>
+					<s3Bucket>elasticbeanstalk-us-east-1-763321355032</s3Bucket>
 					<s3Key>${project.artifactId}/${project.build.finalName}-${maven.build.timestamp}.jar</s3Key>
 					<applicationName>Tipsy</applicationName>
 					<environmentName>Tipsy-env</environmentName>
