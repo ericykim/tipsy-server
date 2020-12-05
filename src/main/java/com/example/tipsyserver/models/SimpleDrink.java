@@ -1,7 +1,10 @@
 package com.example.tipsyserver.models;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "drinks")
@@ -13,6 +16,24 @@ public class SimpleDrink {
     private String drinkName;
     private String imageUrl;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "likedDrinks")
+    private Set<User> likes;
+
+    @PreRemove
+    private void removeLikedDrinksFromUser() {
+        for(User u: likes){
+            u.getLikedDrinks().remove(this);
+        }
+    }
+
+    public Set<User> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Set<User> likes) {
+        this.likes = likes;
+    }
 
     public Integer getDrinkId() {
         return drinkId;
@@ -37,4 +58,6 @@ public class SimpleDrink {
     public void setDrinkName(String drinkName) {
         this.drinkName = drinkName;
     }
+
+
 }

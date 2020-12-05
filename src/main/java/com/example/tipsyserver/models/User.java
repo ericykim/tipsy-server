@@ -1,71 +1,110 @@
 package com.example.tipsyserver.models;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "users")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class User {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "id")
-  private String id;
-  private String username;
-  private String password;
-  private String userType;
-  private String firstName;
-  private String lastName;
-  private String email;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+    private String username;
+    private String password;
+    @Column(name = "user_type")
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
+    private String firstName;
+    private String lastName;
+    private String email;
 
-  public String getUsername() {
-    return username;
-  }
+    @ManyToMany(targetEntity = SimpleDrink.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<SimpleDrink> likedDrinks = new HashSet<>();
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+    @OneToMany(targetEntity = SimpleDrink.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private Set<SimpleDrink> createdDrinks = new HashSet<>();
 
-  public String getPassword() {
-    return password;
-  }
+    public void addCreatedDrink(SimpleDrink drink) {
+        this.createdDrinks.add(drink);
+    }
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+    public void removeCreatedDrink(SimpleDrink drink) {
+        createdDrinks.remove(drink);
+    }
 
-  public String getUserType() {
-    return userType;
-  }
+    public Integer getId() {
+        return id;
+    }
 
-  public void setUserType(String userType) {
-    this.userType = userType;
-  }
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-  public String getFirstName() {
-    return firstName;
-  }
+    public String getUsername() {
+        return username;
+    }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-  public String getLastName() {
-    return lastName;
-  }
+    public String getPassword() {
+        return password;
+    }
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-  public String getEmail() {
-    return email;
-  }
+    public UserType getUserType() {
+        return userType;
+    }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
+    public void setUserType(UserType userType) {
+        this.userType = userType;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Set<SimpleDrink> getCreatedDrinks() {
+        return createdDrinks;
+    }
+
+    public void setCreatedDrinks(Set<SimpleDrink> createdDrinks) {
+        this.createdDrinks = createdDrinks;
+    }
+
+    public Set<SimpleDrink> getLikedDrinks() {
+        return likedDrinks;
+    }
+
+    public void setLikedDrinks(Set<SimpleDrink> likedDrinks) {
+        this.likedDrinks = likedDrinks;
+    }
 }
