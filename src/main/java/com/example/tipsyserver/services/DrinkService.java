@@ -3,7 +3,6 @@ package com.example.tipsyserver.services;
 import com.example.tipsyserver.models.Drink;
 import com.example.tipsyserver.models.SimpleDrink;
 import com.example.tipsyserver.repositories.DrinkRepository;
-
 import com.example.tipsyserver.repositories.SimpleDrinkRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

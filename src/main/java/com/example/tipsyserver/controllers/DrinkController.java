@@ -31,19 +31,4 @@ public class DrinkController {
     public Drink getDrinkById(@PathVariable("drinkId") int drinkId) {
         return drinkService.getDrinkById(drinkId);
     }
-
-    @PostMapping("/api/v1/drinks")
-    public Drink createDrink(@RequestBody Drink drink) {
-        return drinkService.createDrink(drink);
-    }
-
-    @DeleteMapping("/api/v1/drinks/{drinkId}")
-    public void deleteDrink(@PathVariable("drinkId") int drinkId) {
-        drinkService.deleteDrink(drinkId);
-    }
-
-    @PutMapping("/api/v1/drinks/{drinkId}")
-    public Drink updateDrink(@PathVariable("drinkId") int drinkId, @RequestBody Drink drink) {
-        return drinkService.updateDrink(drinkId, drink);
-    }
 }
