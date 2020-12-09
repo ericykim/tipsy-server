@@ -39,6 +39,12 @@ public class BartenderService {
 
     public void deleteDrink(Integer userId, Integer drinkId){
         User user = userRepository.findById(userId).get();
+
+        Drink fullDrink = drinkRepository.findById(drinkId).get();
+        fullDrink.getSteps().clear();
+        fullDrink.getIngredients().clear();
+        drinkRepository.save(fullDrink);
+
         SimpleDrink drink = simpleDrinkRepository.findById(drinkId).get();
         user.removeCreatedDrink(drink);
         userRepository.save(user);
