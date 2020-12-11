@@ -71,4 +71,7 @@ public class UserService {
         query.executeUpdate();
     }
 
+    public User getUserById(Integer userId) {
+        return userRepository.findById(userId).get();
+    }
 }

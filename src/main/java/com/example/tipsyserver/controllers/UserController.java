@@ -44,6 +44,11 @@ public class UserController {
     return userService.registerUser(session, user);
   }
 
+  @GetMapping("/api/v1/users/{userId}")
+  public User getUserById(@PathVariable("userId") Integer userId) {
+    return userService.getUserById(userId);
+  }
+
 
   /*endpoints for liked drinks*/
 
