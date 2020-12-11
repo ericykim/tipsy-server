@@ -69,6 +69,8 @@ public class BartenderService {
         simpleDrink.setDrinkId(drink.getDrinkId());
         simpleDrink.setDrinkName(drink.getDrinkName());
         simpleDrink.setImageUrl(drink.getImageUrl());
+        simpleDrink.setCreatorId(drink.getCreatorId());
+        simpleDrink.setCreatorUsername(drink.getCreatorUsername());
         return  simpleDrink;
     }
 }

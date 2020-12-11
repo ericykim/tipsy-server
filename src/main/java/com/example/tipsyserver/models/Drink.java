@@ -18,6 +18,24 @@ public class Drink {
             fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Ingredient> ingredients;
     private String imageUrl;
+    private Integer creatorId;
+    private String creatorUsername;
+
+    public Integer getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(Integer creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public String getCreatorUsername() {
+        return creatorUsername;
+    }
+
+    public void setCreatorUsername(String creatorUsername) {
+        this.creatorUsername = creatorUsername;
+    }
 
     public List<Step> getSteps() {
         return steps;

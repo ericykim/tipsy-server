@@ -15,6 +15,24 @@ public class SimpleDrink {
     private Integer drinkId;
     private String drinkName;
     private String imageUrl;
+    private Integer creatorId;
+    private String creatorUsername;
+
+    public Integer getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(Integer creatorId) {
+        this.creatorId = creatorId;
+    }
+
+    public String getCreatorUsername() {
+        return creatorUsername;
+    }
+
+    public void setCreatorUsername(String creatorUsername) {
+        this.creatorUsername = creatorUsername;
+    }
 
     @JsonIgnore
     @ManyToMany(mappedBy = "likedDrinks")
