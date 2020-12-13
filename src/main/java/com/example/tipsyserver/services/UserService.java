@@ -77,6 +77,12 @@ public class UserService {
 
     public User updateUser(Integer userId, User user) {
         user.setId(userId);
+
+        User actualUser = userRepository.findById(userId).get();
+        if(user.getPassword().isEmpty()){
+            user.setPassword(actualUser.getPassword());
+        }
+
         return userRepository.save(user);
     }
 
