@@ -56,12 +56,11 @@ public class BartenderService {
         SimpleDrink oldDrink = simpleDrinkRepository.findById(drinkId).get();
         user.removeCreatedDrink(oldDrink);
 
-        drink.setDrinkId(drinkId);
         SimpleDrink simpleDrink = simpleDrinkFromDrink(drink);
         user.addCreatedDrink(simpleDrink);
 
         userRepository.save(user);
-        return drink;
+        return drinkRepository.save(drink);
     }
 
     private SimpleDrink simpleDrinkFromDrink(Drink drink){
