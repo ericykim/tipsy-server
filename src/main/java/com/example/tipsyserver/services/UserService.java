@@ -72,6 +72,29 @@ public class UserService {
     }
 
     public User getUserById(Integer userId) {
-        return userRepository.findById(userId).get();
+        User userToGet = userRepository.findById(userId).get();
+        userToGet.setPassword("");
+        return userToGet;
+    }
+
+    public User updateUser(Integer userId, User user) {
+        user.setId(userId);
+
+        User actualUser = userRepository.findById(userId).get();
+        if(user.getPassword().trim().isEmpty()){
+            user.setPassword(actualUser.getPassword());
+        }
+
+        User updatedUser = userRepository.save(user);
+        updatedUser.setPassword("");
+        return updatedUser;
+    }
+
+    public void deleteUser(Integer userId) {
+        User user = userRepository.findById(userId).get();
+        user.getLikedDrinks().clear();
+        user.getCreatedDrinks().clear();
+        userRepository.save(user);
+        userRepository.deleteById(userId);
     }
 }
