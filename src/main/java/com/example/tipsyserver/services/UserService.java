@@ -30,8 +30,11 @@ public class UserService {
     public User loginUser(HttpSession session, User user) {
         User existingUser = userRepository.checkUserExist(user.getUsername(), user.getPassword());
 
-        existingUser.setPassword(" ");
-        session.setAttribute("profile", existingUser);
+        if (existingUser != null) {
+            existingUser.setPassword(" ");
+            session.setAttribute("profile", existingUser);
+        }
+
         return existingUser;
     }
 
