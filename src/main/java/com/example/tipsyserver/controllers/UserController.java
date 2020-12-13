@@ -49,6 +49,16 @@ public class UserController {
     return userService.getUserById(userId);
   }
 
+  @PutMapping("api/v1/users/{userId}")
+  public User updateUser(@PathVariable("userId") Integer userId, @RequestBody User user) {
+    return userService.updateUser(userId, user);
+  }
+
+  @DeleteMapping("api/v1/users/{userId}")
+  public void deleteUser(@PathVariable("userId") Integer userId){
+    userService.deleteUser(userId);
+  }
+
 
   /*endpoints for liked drinks*/
 

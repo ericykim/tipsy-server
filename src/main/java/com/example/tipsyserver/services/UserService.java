@@ -74,4 +74,17 @@ public class UserService {
     public User getUserById(Integer userId) {
         return userRepository.findById(userId).get();
     }
+
+    public User updateUser(Integer userId, User user) {
+        user.setId(userId);
+        return userRepository.save(user);
+    }
+
+    public void deleteUser(Integer userId) {
+        User user = userRepository.findById(userId).get();
+        user.getLikedDrinks().clear();
+        user.getCreatedDrinks().clear();
+        userRepository.save(user);
+        userRepository.deleteById(userId);
+    }
 }
