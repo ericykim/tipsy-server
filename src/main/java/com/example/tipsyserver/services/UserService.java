@@ -72,7 +72,9 @@ public class UserService {
     }
 
     public User getUserById(Integer userId) {
-        return userRepository.findById(userId).get();
+        User userToGet = userRepository.findById(userId).get();
+        userToGet.setPassword("");
+        return userToGet;
     }
 
     public User updateUser(Integer userId, User user) {
@@ -83,7 +85,9 @@ public class UserService {
             user.setPassword(actualUser.getPassword());
         }
 
-        return userRepository.save(user);
+        User updatedUser = userRepository.save(user);
+        updatedUser.setPassword("");
+        return updatedUser;
     }
 
     public void deleteUser(Integer userId) {
