@@ -79,7 +79,7 @@ public class UserService {
         user.setId(userId);
 
         User actualUser = userRepository.findById(userId).get();
-        if(user.getPassword().isEmpty()){
+        if(user.getPassword().trim().isEmpty()){
             user.setPassword(actualUser.getPassword());
         }
 
